@@ -8,6 +8,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Add KUBECONFIG secret if you use it for Minikube remote access
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
     steps:
       - name: Checkout repo
@@ -24,8 +28,6 @@ jobs:
           version: 'latest'
 
       - name: Deploy Elasticsearch Helm Chart
-        env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
         run: |
           kubectl config use-context minikube
           helm upgrade --install elasticsearch elastic/elasticsearch -n elasticsearch -f values.yaml --create-namespace
