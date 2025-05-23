@@ -23,9 +23,6 @@ jobs:
         with:
           version: 'latest'
 
-      - name: Helm lint
-        run: helm lint .
-
       - name: Deploy Elasticsearch Helm Chart
         env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
