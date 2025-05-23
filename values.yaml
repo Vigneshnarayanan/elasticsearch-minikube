@@ -1,0 +1,32 @@
+replicas: 1
+
+volumeClaimTemplate:
+  resources:
+    requests:
+      storage: 5Gi
+
+esConfig:
+  elasticsearch.yml: |
+    cluster.name: "minikube-cluster"
+    network.host: 0.0.0.0
+    xpack.security.enabled: false
+
+resources:
+  requests:
+    cpu: "500m"
+    memory: "1Gi"
+  limits:
+    cpu: "1"
+    memory: "2Gi"
+
+service:
+  type: ClusterIP
+
+persistence:
+  enabled: true
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
