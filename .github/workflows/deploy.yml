@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Add KUBECONFIG secret if you use it for Minikube remote access
